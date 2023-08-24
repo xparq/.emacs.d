@@ -77,6 +77,13 @@
 ;;(require 'yasnippet-classic-snippets)
 (require 'yasnippet-snippets)
 
+
+;;- - - - - - - - - - - - - - -
+;; Universal Completions - CompAny
+;;
+(add-hook 'after-init-hook 'global-company-mode)
+
+
 ;;-----------------------------------------------
 ;; !! https://github.com/dgutov/diff-hl
 ;;

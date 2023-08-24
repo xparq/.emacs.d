@@ -19,7 +19,7 @@
  '(icomplete-show-matches-on-no-input t)
  '(indicate-buffer-boundaries 'right)
  '(package-selected-packages
-   '(yasnippet-snippets yasnippet-classic-snippets yasnippet ## helm projectile))
+   '(company yasnippet-snippets yasnippet-classic-snippets yasnippet ## helm projectile))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(save-place-mode t)

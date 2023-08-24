@@ -1,0 +1,13 @@
+*
+!.gitignore
+
+!sz.cfg-emacs-fuckup-extra-subdir
+!sz.cfg-emacs-fuckup-extra-subdir/**
+
+!README
+
+!/*.el
+
+
+*~
+\#*#
