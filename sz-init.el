@@ -1,4 +1,6 @@
-(add-to-list 'load-path (file-name-concat sz-emacs-home "sz.cfg-emacs-fuckup-extra-subdir"))
+(setq sz-emacs-cfg-fakeroot (file-name-concat sz-emacs-home "sz.cfg-emacs-fuckup-extra-subdir"))
+(setq sz-emacs-cfg-root (file-name-concat sz-emacs-cfg-fakeroot "sz"))
+(add-to-list 'load-path sz-emacs-cfg-fakeroot)
 	;; - Without a load-path (load "sz/...") would fail... I guess even any load would! :-o
 	;; - With adding .emacs.d only:
 	;;     Warning (initialization): Your ‘load-path’ seems to contain your ‘.emacs.d’ directory: ~/.emacs.d

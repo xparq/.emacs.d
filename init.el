@@ -6,22 +6,25 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(completion-category-overrides '((file (styles basic substring))))
  '(completion-ignore-case t t)
  '(completion-styles '(basic substring flex))
  '(cursor-type 'bar)
  '(custom-enabled-themes '(tango-dark))
+ '(display-line-numbers-type 'visual)
+ '(global-display-line-numbers-mode t)
  '(icomplete-hide-common-prefix nil)
  '(icomplete-prospects-height 5)
  '(icomplete-show-matches-on-no-input t)
- '(package-selected-packages '(## helm projectile))
+ '(indicate-buffer-boundaries 'right)
+ '(package-selected-packages
+   '(yasnippet-snippets yasnippet-classic-snippets yasnippet ## helm projectile))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(save-place-mode t)
  '(size-indication-mode t)
  '(speedbar-track-mouse-flag t)
-;- '(sr-speedbar-default-width 16)
-;- '(sr-speedbar-max-width 30)
  '(tool-bar-mode nil))
 ;;!!(custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -29,3 +32,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
 ;;!! '(default ((t (:family "Source Code Pro" :foundry "ADBE" :slant normal :weight normal :height 98 :width normal)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

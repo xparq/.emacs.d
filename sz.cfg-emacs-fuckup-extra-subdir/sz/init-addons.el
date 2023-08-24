@@ -63,6 +63,20 @@
 (marginalia-mode)
 
 
+;;- - - - - - - - - - - - - - -
+;; Completion templates - YASnippet
+;;
+(setq yas-snippet-dirs ())
+(add-to-list 'yas-snippet-dirs (file-name-concat sz-emacs-cfg-root "snippets")) ;; custom snippets (save) dir
+;;      '(
+;;	(file-name-concat sz-emacs-cfg-root "snippets") ;; custom snippets
+;;      "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+;;      "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+;;        ))
+(yas-global-mode 1)
+;;(require 'yasnippet-classic-snippets)
+(require 'yasnippet-snippets)
+
 ;;-----------------------------------------------
 ;; !! https://github.com/dgutov/diff-hl
 ;;

@@ -23,20 +23,21 @@
 ;; https://idiocy.org/emacs-fonts-and-fontsets.html#fn.1
 (set-face-attribute 'default nil :font "Verdana")
 (set-fontset-font t nil "Courier New" nil 'append) ;!!DOES NOTHING!
+;;!! This just tentatively sets the current frame -- this at leat works...:
 (if (string-match-p "windows" (symbol-name system-type))
   (set-frame-font "Consolas 11"))
 
 
 ;;-----------------------------------------------------------------------------
-;; FILES BASICS...
+;; FILE BASICS...
 ;;
  ;
+(set-default-coding-systems 'utf-8)
 ;; Declutter (blank slate)...
 (setq inhibit-startup-screen t)
 	;; Otherwise it would load the "GNU Emacs" buffer even if a file was
 	;; specified on the command line! :-o
 (setq initial-scratch-message nil)
-
 ;; Set the *scratch* buffer to a default, where Tab works as expected...
 (setq initial-major-mode 'fundamental-mode)
 
@@ -177,5 +178,8 @@
 ;;
 ;; Misc. debullshitting...
 ;;
+;; "No comment" for these:
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+;; Less annoying word wrapping:
+(global-visual-line-mode)
