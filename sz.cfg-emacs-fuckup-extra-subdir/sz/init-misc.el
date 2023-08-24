@@ -109,6 +109,7 @@
 ;;!!Only in GUI mode -- some terminals might actually allow this, but I don't want that in console mode:
 (setq cursor-type 'bar)
 
+
 ;;=============================================================================
 ;;
 ;; Customizing "builtin extras"...
@@ -169,3 +170,12 @@
   (require 'dired-x)
   )
 ;;!!?? BUT dired-x-find-file DOESN'T SEEM TO EXIST (at least M-x can't see it)! :-o
+
+
+
+;;============================================================================
+;;
+;; Misc. debullshitting...
+;;
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
