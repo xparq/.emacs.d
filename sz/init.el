@@ -9,10 +9,12 @@
 
 ;;(setq sz-emacs-cfg-root (file-name-concat "init.d" "sz"))
 
-(load "my/lib")
-(load "my/c-mode")
-(load "my/init-misc")
+(load "my/lib") ;;!!?? Do this from init-baseline?
+(load "my/init-baseline")
 (load "my/init-addons")
-(load "my/keys")
+
+;; Stuff that may require the ones above, but isn't required by anything above
+;; (Like mode customizations etc.)
+(load "my/init-misc")
 
 ;;(message "Sz: Custom init (%s) loaded." (load-file-name))

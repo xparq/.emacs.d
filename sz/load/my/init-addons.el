@@ -1,6 +1,12 @@
-;;!!
-;;!! SOME OF THESE MAY HAVE BEEN SET BY `custom-set-variables` in init.el ALREADY!
-;;!!
+;;
+;; Add MELPA to the package archives (!!?? once!...)
+;;
+;; (package-initialize) has been called already!
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; https://melpa.org/#/getting-started
+;; Run package-refresh-contents to update!
+(setq package-check-signature nil) ;; Can't install from Windows without it yet...
+  ;; https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure
+
 
 ;;
 ;; spacemacs
@@ -22,9 +28,14 @@
 ;;
 
 ;;- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;;
 ;; Vertico
-(require 'vertico)
+;;
+(require 'vertico) ;;!!?? This doesn't work in my home-built v30, after removing the Debian pkg and just copying over the elpa subdir from Windows! :-/
 (vertico-mode)
+;;(use-package vertico ;;!! use-package undefined... Needs (require 'use-package)...
+;;  :init (vertico-mode))
+
 ;; No scrolling "margin" offset
 (setq vertico-scroll-margin 0)
 ;; Show a bit more candidates

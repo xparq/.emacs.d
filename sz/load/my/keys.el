@@ -26,9 +26,12 @@
 ;;!! is supposedly kinda the same (e.g. also global), but it still works... :-o )
 ;;(global-set-key (kbd "C-<end>") `sz-EndOfBuffer)
 
+
 ;; Saner Page Up/Down
 (global-set-key (kbd "<prior>") `sz-PgUp)
 (global-set-key (kbd "<next>")  `sz-PgDn)
+
+(global-unset-key (kbd "C-<prior>")) ;; Just another case of "command disabled because confusing" lunacy...
 
 
 ;;!!(global-set-key   (kbd "C-<left>")  'sz-prev-word-boundary)
