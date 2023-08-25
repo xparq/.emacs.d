@@ -1,4 +1,8 @@
-﻿* Add a tmp. Esc->quit binding to the "conemacs" wrapper script
+﻿* Proper file (buffer) switching
+
+* Divide the init/cfg into a "free" sanitization baseline layer, plus extras.
+
+* conemacs: load much less crap on startup, but still keep the sane defaults!
 
 * Custom `custom.el`: is it actually used?!
 

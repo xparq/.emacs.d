@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Map Esc to Quit (may still need to be pressed twice, because Linux)
+emacs -nw --eval '(define-key key-translation-map (kbd "ESC") (kbd "C-x C-c"))' -- "$@"
