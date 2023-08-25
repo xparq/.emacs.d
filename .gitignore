@@ -1,13 +1,15 @@
 *
 !.gitignore
 
-!sz.cfg-emacs-fuckup-extra-subdir
-!sz.cfg-emacs-fuckup-extra-subdir/**
+!sz
+!sz/**
 
-!README
+!README*
+!TODO*
 
 !/*.el
 
 
 *~
 \#*#
+ede-projects.el

@@ -21,8 +21,8 @@
 
 ;; Font fallbacks...
 ;; https://idiocy.org/emacs-fonts-and-fontsets.html#fn.1
-(set-face-attribute 'default nil :font "Verdana")
-(set-fontset-font t nil "Courier New" nil 'append) ;!!DOES NOTHING!
+;;(set-face-attribute 'default nil :font "Verdana")
+(set-fontset-font t nil "Courier New" nil 'append) ;!!DOES NOTHING?
 ;;!! This just tentatively sets the current frame -- this at leat works...:
 (if (string-match-p "windows" (symbol-name system-type))
   (set-frame-font "Consolas 11"))
@@ -41,8 +41,13 @@
 ;; Set the *scratch* buffer to a default, where Tab works as expected...
 (setq initial-major-mode 'fundamental-mode)
 
+;; Remember recently opened files
 (require 'recentf)
 (recentf-mode 1)
+
+;; Show dir names for non-unique buffer file names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 
 ;;-----------------------------------------------------------------------------
@@ -137,7 +142,7 @@
 ;; -> See Vertico in init-addons!
 ;;
 ;; (Some settings originally from oantolin@reddit: https://www.reddit.com/r/emacs/comments/c0gt96/comment/er5rmtx/)
-(custom-set-variables
+(custom-set-variables ;;!!Mind the warning in init.el about having more of these being bad! :-o
  ;;'(fido-vertical-mode) ;;!!Using Vertico for now! (And they can clash for some choices! Plus the extra clutter...)
  '(icomplete-show-matches-on-no-input t)
  '(icomplete-hide-common-prefix nil)
@@ -163,23 +168,26 @@
 )))
 
 ;;---------------------------------------
-;; dired-x
+;; dired-x (!!??)
 ;; (https://www.gnu.org/software/emacs/manual/html_node/dired-x/Optional-Installation-File-At-Point.html)
 (with-eval-after-load 'dired ;;!!?? Doesn't it blatantly reload dired then?!
   ;; Bind dired-x-find-file.
   (setq dired-x-hands-off-my-keys nil)
   (require 'dired-x)
-  )
-;;!!?? BUT dired-x-find-file DOESN'T SEEM TO EXIST (at least M-x can't see it)! :-o
+  );;!!?? BUT dired-x-find-file DOESN'T SEEM TO EXIST (at least M-x can't see it)! :-o
 
 
 
 ;;============================================================================
 ;;
-;; Misc. debullshitting...
+;; Misc. ground-levelling, debullshitting...
 ;;
 ;; "No comment" for these:
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-;; Less annoying word wrapping:
-(global-visual-line-mode)
+
+;; Scroll horizontally, FFS!...
+(global-visual-line-mode -1) ;; Enabling this kills hscrolling ("truncating")! :-o
+(setq truncate-partial-width-windows 'always) ;;!! Not sure non-nill actually means that...
+(advice-add 'set-window-buffer :after
+  (lambda (buf-or-name &optional dummy1 dummy2) (toggle-truncate-lines 1)))

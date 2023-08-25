@@ -67,7 +67,7 @@
 ;; Completion templates - YASnippet
 ;;
 (setq yas-snippet-dirs ())
-(add-to-list 'yas-snippet-dirs (file-name-concat sz-emacs-cfg-root "snippets")) ;; custom snippets (save) dir
+(add-to-list 'yas-snippet-dirs (file-name-concat sz-emacs-dir "snippets")) ;; custom snippets (save) dir
 ;;      '(
 ;;	(file-name-concat sz-emacs-cfg-root "snippets") ;; custom snippets
 ;;      "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
@@ -99,7 +99,7 @@
 (setq sr-speedbar-width-console 30)
 (setq sr-speedbar-width-x 40)
 (setq sr-speedbar-max-width 50)
-(load "sz/ext/sr-speedbar") ; I think this must come *after* setting its params...
+(load "ext/sr-speedbar") ; Load *after* setting its params!
 (sr-speedbar-open) ; Just open it by default
 ;;!!Keep this for "other-window" for now:(global-set-key (kbd "<f6>") 'sr-speedbar-toggle)
 
