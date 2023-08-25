@@ -1,4 +1,6 @@
-﻿* Proper file (buffer) switching
+﻿* Ctrl + Del/Backsp -> sz/delete-to-next-word-boundary, sz/backspace-to-prev-word-boundary
+
+* Proper file (buffer) switching (FWIF: M1/M3 on buffer name is prev/next)
 
 * Divide the init/cfg into a "free" sanitization baseline layer, plus extras.
 
@@ -9,11 +11,6 @@
 * CompAny: also allow dismissing offered completions by delete, not just backspace
 
 * Proper scrolling to botton on Ctrl-End
-
-* Window tab bar (until proper window/buffer logic)...
-
-* Context menus enabled
-
 * Speedbar etc.: no line numbers there...
 
 * Speedbar: why does it only show certain files (like not this TODO or the README,
@@ -31,11 +28,11 @@
    via Emacs anyay -- so, if that local tree is cross-platform, it should
    be used on Linux, too!_
 
-* Understand what can and cannot be installed in this uniform way both on
+  - Understand what can and cannot be installed in this uniform way both on
   Linux and Windows
   - with the occasional checks/switches/branches across the two
-  + E.g. just copying package-installed stuff from one to the other seems fine!
+    + E.g. just copying package-installed stuff from one to the other seems fine!
 
-* See how others group their config: do they go thematically, e.g. putting
+* See how others group their configs: do they go thematically, e.g. putting
   the key bindings along with all the other cfg aspects of a given package
   or feature, or do they tend to keep the keys separate?

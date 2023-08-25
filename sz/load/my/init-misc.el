@@ -11,8 +11,12 @@
 ;; Bigger window (ignored in console mode)
 (setq default-frame-alist '((width . 120) (height . 50)))
 
-;; Mouse support works even in console mode, via xterm compatible terminals
-;; like WSL (or even putty/kitty?)
+(window-divider-mode) ;; Default: (setq window-divider-default-places `right-only)
+(global-tab-line-mode) ;; Essential, until sanitized file/buffer switching
+(context-menu-mode) ;;!! Seems to conflicts with clicking/dragging window (pane) frames! :-o
+
+;; Mouse support can work in console mode, even without gpm, via xterm compatible terminals
+;; like WSL (or even putty/kitty?) !!TODO: Might conflict with gpm though, if it's available.
 (xterm-mouse-mode)
 
 ;;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
