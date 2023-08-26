@@ -31,7 +31,9 @@
 (global-set-key (kbd "<prior>") `sz-PgUp)
 (global-set-key (kbd "<next>")  `sz-PgDn)
 
-(global-unset-key (kbd "C-<prior>")) ;; Just another case of "command disabled because confusing" lunacy...
+;; Another stupid case of "command disabled because confusing" lunacy...
+(global-unset-key (kbd "C-<prior>"))
+(global-unset-key (kbd "C-<next>"))
 
 
 ;;!!(global-set-key   (kbd "C-<left>")  'sz-prev-word-boundary)
