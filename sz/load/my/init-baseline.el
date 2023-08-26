@@ -1,5 +1,7 @@
+(load "my/lib")
+
 ;;
-;; Some variables etc. may have been set by `custom-*` already!
+;; SOME VARIABLES MAY HAVE BEEN SET BY `custom-*` ALREADY!
 ;;
 
 ;;-----------------------------------------------------------------------------
@@ -51,6 +53,9 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+;; Remember file positions
+(setq save-place-mode 1)
+
 
 ;;-----------------------------------------------------------------------------
 ;; Scrolling...
@@ -75,6 +80,12 @@
 ;;
 ;; "True" CUA-style volatile selections (with auto-overwrite)
 (delete-selection-mode 1)
+
+;; Sync clipboard to the host OS in ANSI terminals (in addition to GUIs)
+;;!!This is not a builtin -- but essential, and should be... :-/
+
+(load-library "ext/clipetty") ;!! `require` can't handle subdirs: (require 'ext/clipetty...
+(global-clipetty-mode)
 
 
 ;;-----------------------------------------------------------------------------
@@ -103,6 +114,7 @@
 ;;
 ;; Show cursor column in the status line
 (setq column-number-mode t)
+(setq size-indication-mode t)
 
 ;; Differentiate void view area from existing empty lines
 (setq-default indicate-empty-lines t)
@@ -115,7 +127,9 @@
 (setq-default display-line-numbers-width 3)
 
 ;;!!Only in GUI mode -- some terminals might actually allow this, but I don't want that in console mode:
-(setq cursor-type 'bar)
+;;(setq cursor-type 'bar)
+(setq-default cursor-type '(bar . 2))
+(set-cursor-color "#202000")
 
 
 ;;=============================================================================
@@ -123,20 +137,6 @@
 ;; Customizing "builtin extras"...
 ;;
 ;;==============================================================================
-
-;;--------------------------------------
-;; Add a way to render (for preview) a HTML buffer in-place
-;; https://www.daemon.de/blog/2017/06/08/render-current-html-buffer-eww/
-(require 'eww)
-[;;!!This doesn't work at all, URL can't be just a buffer name, as it seems... :-/
- (defun sz/eww-render-current-buffer ()
-  "Render HTML in the current buffer with EWW"
-  (interactive)
-  (beginning-of-buffer)
-  (eww-display-html 'utf8 (buffer-name)))
-
-(global-set-key (kbd "M-o M-e") 'sz/eww-render-current-buffer)
-]
 
 ;;--------------------------------------
 ;; Completion support (Fido mode, from icomplete)

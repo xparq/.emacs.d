@@ -1,11 +1,30 @@
+(defun autofeaturep (feature) ;; https://stackoverflow.com/a/12576125/1479945
+  "For a feature symbol 'foo, return a result equivalent to:
+(or (featurep 'foo-autoloads) (featurep 'foo))
+Does not support subfeatures."
+  (catch 'result
+    (let ((feature-name (symbol-name feature)))
+      (unless (string-match "-autoloads$" feature-name)
+        (let ((feature-autoloads (intern-soft (concat feature-name "-autoloads"))))
+          (when (and feature-autoloads (featurep feature-autoloads))
+            (throw 'result t))))
+      (featurep feature))))
+
+
 ;;
 ;; Add MELPA to the package archives (!!?? once!...)
 ;;
-;; (package-initialize) has been called already!
+(package-initialize) ;; Not called implicitly with -q?!?! -> #14
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; https://melpa.org/#/getting-started
 ;; Run package-refresh-contents to update!
 (setq package-check-signature nil) ;; Can't install from Windows without it yet...
   ;; https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure
+
+
+;; Sync clipboard to the host OS in ANSI terminals (in addition to GUIs)
+;;!!This should be a builtin, actually...
+;;!!(require 'clipetty)
+;;!!(global-clipetty-mode)
 
 
 ;;
@@ -23,6 +42,7 @@
 ;;(super-save-mode 1)
 ;;(setq super-save-remote-files nil)
 
+
 ;;-----------------------------------------------------------------------------
 ;; Completions...
 ;;
@@ -31,8 +51,11 @@
 ;;
 ;; Vertico
 ;;
+
+;;!!Fails: `define-keymap` void...
 (require 'vertico) ;;!!?? This doesn't work in my home-built v30, after removing the Debian pkg and just copying over the elpa subdir from Windows! :-/
 (vertico-mode)
+
 ;;(use-package vertico ;;!! use-package undefined... Needs (require 'use-package)...
 ;;  :init (vertico-mode))
 
@@ -78,7 +101,7 @@
 ;; Completion templates - YASnippet
 ;;
 (setq yas-snippet-dirs ())
-(add-to-list 'yas-snippet-dirs (file-name-concat sz-emacs-dir "snippets")) ;; custom snippets (save) dir
+(add-to-list 'yas-snippet-dirs (file-name-concat sz/emacs-dir "snippets")) ;; custom snippets (save) dir
 ;;      '(
 ;;	(file-name-concat sz-emacs-cfg-root "snippets") ;; custom snippets
 ;;      "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
@@ -115,15 +138,36 @@
 ;;!!Keep this for "other-window" for now:(global-set-key (kbd "<f6>") 'sr-speedbar-toggle)
 
 
-;;
+;;-----------------------------------------------
 ;; projectile - https://github.com/bbatsov/projectile
 ;;
 ;;(projectile-mode)
 ;;(define-key projectile-mode-map (kbd "M-a p") 'projectile-command-map)
 
 
-;;
+;;-----------------------------------------------
 ;; vterm (Debian: emacs-libvterm) - https://github.com/akermu/emacs-libvterm
 ;;
 (if (not (string-match-p "windows" (symbol-name system-type)))
-    (require 'vterm)) ; Activate it with (vterm-mode)!
+    (if (autofeaturep 'vterm)
+	(require 'vterm))) ; Activate it with (vterm-mode)!
+
+
+;;--------------------------------------
+;;
+;; eww
+;;
+;; (Not really external sfuff, but still "addon", and a little heavy nonetheless.)
+;;
+;; Add a way to render (for preview) a HTML buffer in-place
+;; https://www.daemon.de/blog/2017/06/08/render-current-html-buffer-eww/
+(require 'eww)
+[;;!!This doesn't work at all, URL can't be just a buffer name, as it seems... :-/
+ (defun sz/eww-render-current-buffer ()
+  "Render HTML in the current buffer with EWW"
+  (interactive)
+  (beginning-of-buffer)
+  (eww-display-html 'utf8 (buffer-name)))
+
+(global-set-key (kbd "M-o M-e") 'sz/eww-render-current-buffer)
+]

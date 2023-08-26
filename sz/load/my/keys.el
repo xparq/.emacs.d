@@ -125,8 +125,11 @@
 
 
 ;; Lower/Upper Case etc.
-(global-set-key "\C-L" 'sz-downcase-region-or-word-or-line) ;; Replacing `recenter-top-bottom`
-(global-set-key "\C-U" 'sz-upcase-region-or-word-or-line)
+(global-set-key (kbd "C-x C-l") 'sz-downcase-region-or-word-or-line) ;; Replacing `recenter-top-bottom`
+(global-set-key (kbd "C-x C-u") 'sz-upcase-region-or-word-or-line)
+;; These don't work in the terminal, because Shift... :-/ -> #4
+;;(global-set-key "\C-L" 'sz-downcase-region-or-word-or-line) ;; Replacing `recenter-top-bottom`
+;;(global-set-key "\C-U" 'sz-upcase-region-or-word-or-line)
 
 
 ;; Prevent accidentally "freezing" emacs with (suspend-frame):

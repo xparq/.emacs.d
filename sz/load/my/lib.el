@@ -161,21 +161,19 @@ With a prefix argument P, isearch for the word at the cursor."
   (goto-char p2)
   (if (string= move_to 'word-start)
       (exchange-point-and-mark))
+
+  (if nil (;;!!?? WHY IS bds VOID HERE?
+	   (let ((default (thing-at-point 'word))
+		 (bds (bounds-of-thing-at-point 'word))
+		 (p1 (car bds))
+		 (p2 (cdr bds))
+		 )
+	     (set-mark p1)
+	     (goto-char p2))
+	   )
+    )
   
   ;;!! And now something must be done to "half-deactivate" (actually: "finish", or "close")
   ;;!! the transient selection (if we are in transient selection mode [which should also be
   ;;!! actually checked! :) ]), so that the next (non-shift-navig.) action would deactivate it!...
 )
-
-
-
-  (if nil (;;!!?? WHY IS bds VOID HERE?
-  (let ((default (thing-at-point 'word))
-	(bds (bounds-of-thing-at-point 'word))
-	(p1 (car bds))
-	(p2 (cdr bds))
-       )
-    (set-mark p1)
-    (goto-char p2))
-  )
-  )
