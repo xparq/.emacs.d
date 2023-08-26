@@ -3,6 +3,7 @@
 
 !sz
 !sz/**
+sz/**/*.elc
 
 !README*
 !TODO*
