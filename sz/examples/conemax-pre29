@@ -1,0 +1,33 @@
+#!/usr/bin/env -S /opt/emacs/bin/emacs -q -nw --load
+
+(setenv "HOME" "/opt/emacs") ; This should come from the shebang line, but, alas, Linux...
+;;##
+;;## Only use this "temp" HOME for throwaway sessions, as it could make things
+;;## confusing/confused/mixed up (if used for real personal tasks (accidentally)!
+;;##
+;;## ...and it would cause even worse problems when called via sudo! :-o
+;;##
+
+;; My init will use this as the "run level" (or "most major mode"...):
+(defvar sz/emacs-mode "baseline")
+;;(defvar sz/emacs-mode "full")
+
+
+(let ((emacs-root (getenv "HOME")))
+  (message "Initializing Emacs at %s (runlevel '%s')..." emacs-root sz/emacs-mode)
+
+  (load (file-name-concat emacs-root ".emacs.d/init"))
+
+  ;;--------------------------------------------------------------------------\
+  ;; Custom key mappings for conemax
+  ;;
+  ;!!(load "protected-keys") ; to prevent overrides by every random mode...
+  ;;
+  ;; Note: key macros (aliases) would cause problems here (like the save-changes
+  ;;       prompt getting stuck in some input mode with no prompt or echo...):
+  ;;       ... (kbd "C-x C-c"))
+  ;;
+  (define-key sz/forced-keymap (kbd "M-q") #'save-buffers-kill-terminal)
+  ;;--------------------------------------------------------------------------/
+
+  (message "Started Emacs at %s (runlevel '%s')." emacs-root sz/emacs-mode))

@@ -1,4 +1,4 @@
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (file-name-concat user-emacs-directory "custom.el"))
 (load custom-file)
 
-(load "~/.emacs.d/sz/init")
+(load (file-name-concat user-emacs-directory "sz/init"))

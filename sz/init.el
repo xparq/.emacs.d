@@ -9,7 +9,16 @@
 
 ;;(setq sz-emacs-cfg-root (file-name-concat "init.d" "sz"))
 
+;; Needed for bootstrapping, too, not just for "runlevelling":
+(load "my/lib")
+
+(if (sz-custom-cmdline-flag "--sz-init-baseline") (setq sz/emacs-mode "baseline"))
+(if (sz-custom-cmdline-flag "--sz-init-full")     (setq sz/emacs-mode "full"))
 (defvar sz/emacs-mode "full")
+
+(message sz/emacs-dir)
+(message sz/emacs-mode)
+
 
 (load "my/init-baseline")
 

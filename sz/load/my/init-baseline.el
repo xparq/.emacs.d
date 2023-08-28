@@ -1,5 +1,3 @@
-(load "my/lib")
-
 ;;
 ;; SOME VARIABLES MAY HAVE BEEN SET BY `custom-*` ALREADY!
 ;;

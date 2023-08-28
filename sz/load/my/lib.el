@@ -4,6 +4,15 @@
 ;;!!?? Check how the hydra guy did it! :) (defmacro λ (x...) (lambda x...)
 
 
+;; https://stackoverflow.com/a/4065412/1479945
+(defun sz-custom-cmdline-flag (flag)
+  "Check if a cmdline arg. is set, and then remove it. Emacs notices..about it.\
+  Usage: (if (sz-custom-cmdline-flag \"--myflag\") (message \"Found!\"))"
+  (let ((found (member flag command-line-args)))
+    (setq command-line-args (delete flag command-line-args))
+    found))
+
+
 ;;; This one is not needed/used yet:
 (defun sz--set-undo-if-line-changed (line-manip-fn)
   "Execute line-manip-fn, and add undo point if it made an actual change."
